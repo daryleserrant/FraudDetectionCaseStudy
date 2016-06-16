@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div><h1>Events</h1></div>
+
+<form action="/score" method='POST'>
+  Type - or copy and paste your text:<br>
+  <input type="text" name="fd_form" /><br>
+  <input type="submit" />
+</form>
+
+<!-- we're in the body-->
+
+
+{% endblock %}
