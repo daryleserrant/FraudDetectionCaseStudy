@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Section Predictor</title>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <nav class="navbar navbar-fixed-top">
+                <a class="navbar-brand" href="/index"> Predictor </a>
+                <ul class="nav nav-pills navbar-right">
+                    <li role="presentation">
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/events">Events</a>
+                    </li>
+                    <li>
+                      <a href="/fraud">Fraud Detection</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        {% block body %} {% endblock %}
+
+        <br> </br>
+        <footer class="footer">
+            <p>&copy; Event Fraudster 2016</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>
