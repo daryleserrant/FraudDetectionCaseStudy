@@ -1,7 +1,5 @@
-from sklearn import cross_validation
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-
+import pandas as pd
+import numpy as np
 
 def oversample(X, y, target):
     """
@@ -48,10 +46,10 @@ def featurize_data(jsonfile, target=0.4):
                   (df['acct_type'] == 'fraudster') | \
                   (df['acct_type'] == 'fraudster_att')
 
-    #If currency is a certain value, set boolean
+    # If currency is a certain value, set boolean
     df['currency_grp'] = df['currency'].isin(['GBP','USD','EUR','CAD'])
 
-    #If delivery method is Nan, set to some value. Deserves review because the value is arbitrary
+    # If delivery method is Nan, set to some value. Deserves review because the value is arbitrary
     df.loc[df['delivery_method'].isnull() == True, 'delivery_method'] = 2
 
     # create initial feature matrix
@@ -64,16 +62,9 @@ def featurize_data(jsonfile, target=0.4):
 
     # change X to match uncorrelated features
     y = df.pop('fraud')
-    #X = df[['has_country', 'has_state', 'has_name', 'has_address', 'num_payouts', 'show_map']]
+    # X = df[['has_country', 'has_state', 'has_name', 'has_address', 'num_payouts', 'show_map']]
 
     X = pd.concat([df['num_payouts'],df['fb_published'],df['has_analytics'], \
                               df['show_map'],df['delivery_method'],df['currency_grp'], \
                              df['has_latitude']], axis=1)
-
-
-    X.corr()
-
-    X_oversampled, y_oversampled = oversampling(X.values, y.values, target)
-
-    # train, test, split cross-validation
-    return cross_validation.train_test_split(X_oversampled, y_oversampled, test_size=0.4, random_state=0)
+    return X.values,y.values
